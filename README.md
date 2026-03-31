@@ -1,4 +1,5 @@
 # Sales Performance Dashboard – Power BI
+<img width="624" height="270" alt="Title" src="https://github.com/user-attachments/assets/0f4433d5-040a-4928-9767-395d9b127323" />
 
 ## Overview
 
@@ -22,7 +23,7 @@ This project was completed as part of a guided Power BI tutorial to strengthen m
 2. Dim_Accounts: Customer and location information
 3. Dim_Product: Product hierarchy and classification
 
-🧱 Data Modeling
+### Data Modeling
 
 A star schema was implemented:
 Fact table: Fact_Sales
@@ -30,8 +31,12 @@ Dimension tables: Dim_Product, Dim_Accounts, Dim_Date
 
 A custom date table was created using DAX:
 
+```
 Dim_Date = CALENDAR(DATE(2022,01,01), DATE(2024,12,31))
-📐 Key Measures (DAX)
+```
+
+Key Measures (DAX)
+```
 Sales = SUM(Fact_Sales[Sales_USD])
 Quantity = SUM(Fact_Sales[Quantity])
 COGs = SUM(Fact_Sales[COGS_USD])
@@ -41,7 +46,10 @@ GP% = DIVIDE([Gross Profit], [Sales])
 Time Intelligence:
 YTD_Sales = TOTALYTD([Sales], Dim_Date[Date])
 PYTD_Sales = CALCULATE([Sales], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+```
+
 Dynamic Measure Selection:
+```
 S_YTD =
 VAR selected_value = SELECTEDVALUE(Slc_Values[Values])
 RETURN
@@ -51,77 +59,43 @@ SWITCH(
     "Quantity", [YTD_Quantity],
     "Gross Profit", [YTD_GrossProfit]
 )
-📊 Dashboard Features
-🔹 KPI Cards
+```
 
-YTD Sales
+### Dashboard Features and Visualization
+1. Year filter
+2. SWITCH Metric selector (Sales, Quantity, Gross Profit)
+3. KPI Cards for PYTD Sales, YTD Switch, YTD vs PYTD, Gross Profit %
+4. Treemap showing bottom 10 performing countries 
+6. Waterfall chart for performance breakdown
+7. Line & column chart for trend comparison
+8. Scatter plot analyzing profitability vs revenue
 
-PYTD Sales
+### Conditional Formatting for YTD vs PYTD Values
 
-YTD vs PYTD
+1. Positive values highlighted in green
+2. Negative values highlighted in red
 
-Gross Profit %
+## Result
 
-🔹 Interactive Slicers
+<img width="2560" height="1440" alt="Dashboard" src="https://github.com/user-attachments/assets/022b70e2-5934-48aa-a5c4-311b2bfa42b0" />
 
-Metric selector (Sales, Quantity, Gross Profit)
+### Key Insights
 
-Year filter
+1. Some countries consistently show negative growth compared to the previous year
+2. Sales trends vary across product types and time periods
+3. Certain accounts generate high revenue but lower profit margins
 
-🔹 Visualizations
+### Business Recommendations
 
-Treemap showing bottom-performing countries
+1. Focus on improving performance in underperforming regions
+2. Optimize product strategy based on profitability trends
+3. Target high-revenue, low-profit accounts for cost improvements
 
-Waterfall chart for performance breakdown
-
-Line & column chart for trend comparison
-
-Scatter plot analyzing profitability vs revenue
-
-🎨 Conditional Formatting
-
-Positive values highlighted in blue
-
-Negative values highlighted in red
-
-Improves quick identification of performance trends
-
-🧠 Key Insights
-
-Some countries consistently show negative growth compared to the previous year
-
-Sales trends vary across product types and time periods
-
-Certain accounts generate high revenue but lower profit margins
-
-💡 Business Recommendations
-
-Focus on improving performance in underperforming regions
-
-Optimize product strategy based on profitability trends
-
-Target high-revenue, low-profit accounts for cost improvements
-
-⚙️ Tools Used
-
-Power BI
-
-DAX (Data Analysis Expressions)
-
-Data Modeling (Star Schema)
-
-📸 Dashboard Preview
-
-(Add your screenshots here)
-
-📚 What I Learned
+## Conclusion
+### What I Learned
 
 Building a star schema data model
-
 Creating time-intelligence measures (YTD, PYTD)
-
 Using SWITCH for dynamic measure selection
-
 Designing interactive dashboards with slicers
-
 Applying conditional formatting for better insights
