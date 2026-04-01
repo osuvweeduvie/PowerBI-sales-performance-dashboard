@@ -91,8 +91,7 @@ result
 
 ### Conditional Formatting for YTD vs PYTD Values
 
-1. Positive values highlighted in green
-2. Negative values highlighted in red
+A positive value would be highlighted in green while a negative value would be highlighted in red
 
 ## Result
 
@@ -113,8 +112,8 @@ result
 ## Conclusion
 ### What I Learned
 
-Building a star schema data model
-Creating time-intelligence measures (YTD, PYTD)
-Using SWITCH for dynamic measure selection
-Designing interactive dashboards with slicers
-Applying conditional formatting for better insights
+1. Building a star schema data model
+2. Creating time-intelligence measures (YTD, PYTD)
+3. Using SWITCH for dynamic measure selection
+4. Designing interactive dashboards with slicers
+5. Applying conditional formatting for better insights
